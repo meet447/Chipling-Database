@@ -2,11 +2,12 @@ import json
 import uuid
 import random
 
-def create_user(name, id):
+def create_user(name, id, key):
     with open("users_data.json", "a") as file:
         data = {
             "name":name,
-            "id":id
+            "id":id,
+            "key":key
             }
         json.dump(data, file)
         file.write('\n')
