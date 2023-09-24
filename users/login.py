@@ -31,6 +31,9 @@ def search_login(uid):
     
 def get_uid(username):
     users = retrive_useracc()
-    uid = users[0]["uid"] 
-    return uid
+    for user in users:
+        if user["username"] == username:
+            uid = user["uid"]
+            return uid  # Return the UID if the username is found
+    return None  # Return None if the username is not found
     
