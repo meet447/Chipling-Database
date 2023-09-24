@@ -1,7 +1,7 @@
 import json
 import os
 
-def create_project(id, key, name):
+def create_project(id, key, name, uid):
     project_folder = os.path.join("projects", id)
 
     if not os.path.exists(project_folder):
@@ -16,7 +16,8 @@ def create_project(id, key, name):
         data = {
             "name": name,
             "key": key,
-            "id": id
+            "id": id,
+            "uid":uid
         }
         json.dump(data, file)
         file.write('\n')
@@ -32,3 +33,12 @@ def retrive_project(id, name, key):
             data.append(post)
     return data
             
+def get_user_projects():
+    with open("projects.json") as file:
+        posts = []
+        with open('projects.json', 'r') as file:
+            for line in file:
+                post = json.loads(line)
+                posts.append(post)
+        return posts
+    

@@ -58,7 +58,7 @@ def create_project_route():
     username = session["username"]
     uid = get_uid(username=username)
     create_user(id=id, key=key, uid=uid, username=username)
-    create_project(id, key, name=name)
+    create_project(id, key, name=name, uid=uid)
     return redirect("/")
 
 if __name__ == "__main__":
