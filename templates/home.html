@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chilping Database</title>
+</head>
+<body>
+    <h1>Welcome:{{ session.username }}</h1>
+    <a href="/create" target="_blank">Create a database</a>
+    <a href="/logout" target="_blank">Logout</a>
+    <h1>{{projects}}</h1>
+    {% for data in projects %}
+    <a href="/project/{{data.id}}" >{{data.name}}</a>
+    {% endfor %}
+</body>
+</html>

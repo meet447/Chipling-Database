@@ -42,3 +42,20 @@ def get_user_projects():
                 posts.append(post)
         return posts
     
+def search_projects(uid):
+    with open("projects.json", "r") as file:
+        posts = []
+        for line in file:
+            project = json.loads(line)
+            if project.get("uid") == uid:
+                posts.append(project)
+    return posts
+
+def get_project(id):
+    with open("projects.json", "r") as file:
+        posts = []
+        for line in file:
+            project = json.loads(line)
+            if project.get("id") == id:
+                posts.append(project)
+    return posts

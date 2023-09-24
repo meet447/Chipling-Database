@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, render_template, session
 from users.login import create_useracc, retrive_useracc, get_uid
-from users.projects import create_project
+from users.projects import create_project, search_projects, get_project, retrive_project
 from users.data import create_user
 import secrets
 
@@ -42,9 +42,13 @@ def login_page():
 
 @app.route("/home")
 def home():
-    if "username" in session:
-        return f"Welcome, {session['username']}!"
-    return redirect("/login")
+    if session["username"]:
+       username = session["username"]
+       uid = get_uid(username=username) 
+       projects = search_projects(uid=uid)
+       return render_template("home.html", projects=projects)
+    else:
+       return redirect("/register")
 
 @app.route("/create")
 def create_page():
@@ -60,6 +64,20 @@ def create_project_route():
     create_user(id=id, key=key, uid=uid, username=username)
     create_project(id, key, name=name, uid=uid)
     return redirect("/")
+
+@app.route("/logout")
+def logout():
+    # Remove the user's session data, if it exists
+    session.pop("username", None)
+    return redirect("/login")
+
+@app.route("/project/<id>")
+def projects_place(id):
+    id = id
+    data = get_project(id=id)
+    name = data[0]["name"]
+    project = retrive_project(id=id, name=name, key="")
+    return project
 
 if __name__ == "__main__":
     app.run(debug=True)
