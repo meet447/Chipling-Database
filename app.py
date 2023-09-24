@@ -44,6 +44,7 @@ def login_page():
 def home():
     if session["username"]:
        username = session["username"]
+       print(username)
        uid = get_uid(username=username) 
        projects = search_projects(uid=uid)
        return render_template("home.html", projects=projects)
@@ -60,6 +61,7 @@ def create_project_route():
     key = request.form.get("key")
     name = request.form.get("name")
     username = session["username"]
+    print(username)
     uid = get_uid(username=username)
     create_user(id=id, key=key, uid=uid, username=username)
     create_project(id, key, name=name, uid=uid)

@@ -12,7 +12,7 @@ def create_project(id, key, name, uid):
     with open(project_file, "w") as file:
         print("created a new file")
 
-    with open("projects.json", "a") as file:
+    with open("json_files/projects.json", "a") as file:
         data = {
             "name": name,
             "key": key,
@@ -34,7 +34,7 @@ def retrive_project(id, name, key):
     return data
             
 def get_user_projects():
-    with open("projects.json") as file:
+    with open("json_files/projects.json") as file:
         posts = []
         with open('projects.json', 'r') as file:
             for line in file:
@@ -43,7 +43,7 @@ def get_user_projects():
         return posts
     
 def search_projects(uid):
-    with open("projects.json", "r") as file:
+    with open("json_files/projects.json", "r") as file:
         posts = []
         for line in file:
             project = json.loads(line)
@@ -52,7 +52,7 @@ def search_projects(uid):
     return posts
 
 def get_project(id):
-    with open("projects.json", "r") as file:
+    with open("json_files/projects.json", "r") as file:
         posts = []
         for line in file:
             project = json.loads(line)

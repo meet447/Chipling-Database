@@ -3,7 +3,7 @@ import uuid
 import random
 
 def create_user(username, uid, key, id):
-    with open("users_data.json", "a") as file:
+    with open("json_files/users_data.json", "a") as file:
         data = {
             "username":username,
             "id":id,
@@ -16,7 +16,7 @@ def create_user(username, uid, key, id):
 
 def retrieve_users():
     posts = []
-    with open('users_data.json', 'r') as file:
+    with open('json_files/users_data.json', 'r') as file:
         for line in file:
             post = json.loads(line)
             posts.append(post)

@@ -1,7 +1,7 @@
 import json
 
 def create_useracc(name, id,uid):
-    with open("login.json", "a") as file:
+    with open("json_files/login.json", "a") as file:
         data = {
             "username":name,
             "password":id,
@@ -13,7 +13,7 @@ def create_useracc(name, id,uid):
         
 def retrive_useracc():
     posts = []
-    with open('login.json', 'r') as file:
+    with open('json_files/login.json', 'r') as file:
         for line in file:
             post = json.loads(line)
             posts.append(post)
